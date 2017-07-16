@@ -1,0 +1,231 @@
+<!-- 设置界面-->
+<!-- date: 2016.11.26-->
+<!-- bug:settingjs有改动-->
+<!-- 头像上传-->
+<!-- -->
+
+{% extends 'zhihu/navbartemplate.html' %}
+{% block content %}
+ {% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人资料</title>
+
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <link href="{% static 'css/settingstyle.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'js/settingjs.js' %}"></script>
+
+    <!--<link href="css/settingstyle.css" rel="stylesheet" type="text/css">
+    <script src="js/settingjs.js"></script>-->
+
+
+
+
+    <script type="text/javascript">
+        function showname()
+        {
+            //document.getElementById("nickname2").value = "sss";   //test
+
+            document.getElementById("nickname2").value = document.getElementById("hiddenname").value;
+        }
+    </script>
+
+
+
+
+</head>
+
+
+<body onload ="showname();">
+
+
+
+<div class="wrap container" style="width: 55% ;height:auto;padding-top: 80px;">
+    <form id="user_update" class="form-inline" role="form" action="" method="post"  enctype="multipart/form-data"><!--enctype -->
+
+        <div class="panel panel-default" style="padding-top: 0;">
+            <div class="panel-heading" >个人资料</div>
+
+            <div class="panel-body" style="width: 100%">
+
+              <div class="form-group" style="padding-top: 0;width:500px">
+
+                <div><span>头像</span>
+                    <img src='/{{ user.profile.url }}'  height="10%" width="15%" />
+                    <a href="javascript:;" class="file" >
+                       <input type="file" name="profile" id="chph" style=" width: 60px;" disabled="true" value=""/>浏览
+                    </a>
+                </div>
+
+                <div class="row" style="padding-top: 20px;" >
+                    <div style="padding-top: 0;" class="form-group col-xs-10">
+                        <div class="name_control" id="name1" style="display: block ;padding-left: 0;padding-top: 0;">
+                            <span>昵称
+                                <span id="nickname" style="padding-left: 40px"> {{user.username}}</span>
+                            </span>
+                        </div>
+
+                        <div class="name_control" style="display: none;padding-left: 0;padding-top: 0;" id="name2" >
+                            <span>昵称</span>
+                            <span style="padding-left: 40px"></span>
+                            <input type="text"  id="username" name="username" class="form-control"  value="{{ user.username }}"  />
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div style="padding-top: 20px" class="row" >
+                    <div style="padding-top: 0;" class="form-group col-xs-10">
+                        <div class="sex_control" id="sex1" style="display: block">
+                            <span>性别</span>
+                            <span id="sex0" style="padding-left: 40px;">{{user.sex}}</span>
+
+                        </div>
+
+                    <div class="" style="display: none" id="sex2">
+                        <span>性别</span>
+                       <!-- <input type="radio" name="sex" value="男"><img src="/static/picture/male.png" style="width: 25px" title="男" />
+                        <input type="radio" name="sex" value="女"><img src="/static/picture/female.png" style="width: 25px" title="女" />-->
+                         <span style="padding-left: 40px"></span>
+                        <input type="text" id="sex" name="sex" class="form-control" value="{{user.sex}}">
+                    </div>
+                    </div>
+                 </div>
+
+                <div class="row" style="padding-top: 20px;">
+                    <div style="padding-top: 0;" class="form-group col-xs-10">
+                        <div class="school_control" id="school1" style="display: block ;padding-left: 0;padding-top: 0;">
+                            <span>学校</span><span id="school" style="padding-left: 40px;">{{user.sch}}</span>
+
+
+                        </div>
+
+                        <div class="" style="display: none;padding-left: 0;padding-top: 0;" id="school2">
+                            <span>学校</span>
+                             <span style="padding-left: 40px"></span>
+                            <input name="sch" type="text" class="form-control" value="{{ user.sch }}" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="padding-top: 20px;">
+                    <div style="padding-top: 0;" class="form-group col-xs-10">
+                       <div class="major_control" id="major1" style="display: block;padding-left: 0;padding-top: 0;">
+                            <span>专业</span><span id="major" style="padding-left: 40px;">{{user.major}}</span>
+
+                        </div>
+
+                        <div class="" style="display: none;padding-left: 0;padding-top: 0;" id="major2">
+                            <span>专业</span>
+                            <span style="padding-left: 40px"></span>
+                            <input name="major" type="text" class="form-control" value="{{ user.major }}" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top: 20px;">
+                    <div style="padding-top: 0;" class="form-group col-xs-10">
+                       <div class="grade_control" id="grade1" style="display: block;padding-left: 0;padding-top: 0;">
+                            <span>年级</span><span id="grade" style="padding-left: 40px;">{{user.grade}}</span>
+                        </div>
+
+                        <div class="" style="display: none;padding-left: 0;padding-top: 0;" id="grade2">
+                            <span>年级</span>
+                            <span style="padding-left: 40px"></span>
+                            <input id="grade02" name="grade" type="text" class="form-control" value="{{ user.grade }}">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<div style="padding-top: 20px;" >
+                    <span>年级</span>
+                    <span style="padding-left: 40px;"></span>
+                    <select name="grade" id="grade" class="grade" style="height: 33px; cursor: not-allowed;" disabled="true">
+                        <option value="g2016">2016</option>
+                        <option value="g2015">2015</option>
+                        <option value="g2014">2014</option>
+                        <option value="g2013">2013</option>
+                        <option value="g2012">2012</option>
+                        <option value="g2011">2011</option>
+                    </select>
+                    <input type="hidden" id="hiddengrade" name="hiddengrade" value="{{user.grade}}">  <!--隐藏域-->
+                    <!--<select name="grade" id="grade2" class="grade2" style="height: 33px; cursor: not-allowed" disabled='true'>
+                        <option value="gra">本科</option>
+                        <option value="postgra">硕士</option>
+                        <option value="master">博士</option>
+                    </select>
+
+                </div>-->
+
+
+
+                <div class="row" style="padding-top: 20px;">
+                    <div style="padding-top: 0;" class="form-group col-md-10">
+                       <div class="email_control" id="em1" style="display: block;padding-left: 0;padding-top: 0;">
+                            <span>邮箱</span><span id="email" style="padding-left: 40px;">{{user.email}}</span>
+                        </div>
+
+                        <div class="" style="display: none;padding-left: 0;padding-top: 0;" id="em2">
+                            <span>邮箱</span>
+                             <span style="padding-left: 40px"></span>
+                            <input name="email" type="text" class="form-control"   value="{{ user.email }}">
+                        </div>
+                    </div>
+                </div>
+
+                  <div class="row" style="padding-top: 20px;">
+                    <div style="padding-top: 0;" class="form-group col-md-10">
+                       <div class="phone_number_control" id="phone1" style="display: block;padding-left: 0;padding-top: 0;">
+                            <span>手机</span><span id="phone_number" style="padding-left: 40px;">{{user.phone_number}}</span>
+                        </div>
+
+                        <div class="" style="display: none;padding-left: 0;padding-top: 0;" id="phone2">
+                            <span>手机</span>
+                             <span style="padding-left: 40px"></span>
+                            <input name="phone_number" type="text" class="form-control"  value="{{ user.phone_number }}">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<div class="row" style="padding-top: 20px;">
+                    <div class="form-group col-xs-9">
+                    <span>联系方式</span>
+                    <select name="connect" id="connect" class="connect" style="height: 33px">
+                        <option value="wechat">微信</option>
+                        <option value="qq">QQ</option>
+                        <option value="eml">邮箱</option>
+                        <option value="phone">手机</option>
+                    </select>
+                    <input type="text" style="outline: none;border:solid 1px gray; height: 35px;" class="form-control" placeholder="你想留下你的联系方式么？">
+                    </div>
+                </div>-->
+
+
+
+
+            <div style="padding-top: 20px;">
+                <input class="btn btn-warning btn-sm" type="button" value="编辑" onclick="change1()" />
+                <input id="save" class="btn btn-primary btn-sm"  type="submit" value="保存" style="margin-left: 40px;" />
+                <!--<button class="btn btn-success btn-lg" id="hdin"  type="submit" href="##" target="_blank">保存</button>-->
+            </div>
+        </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
+  {% endblock %}

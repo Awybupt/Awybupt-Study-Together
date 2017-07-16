@@ -1,0 +1,157 @@
+<!-- date: 2016.11.25-->
+  {% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>一起学吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/static/css/homecss.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/homecss.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+    <div id="top"></div>   <!--return top-->
+
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" style="opacity:0.9">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><strong>一起学吧</strong></a>
+            </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                <ul class="nav navbar-nav navbar" >
+                    <li ><a href="{% url 'mypage' id=user.id %}">主页</a></li>
+                    <li><a href="{% url 'article_list' id=user.id %}">广场</a></li>
+                    <li><a href="{% url 'top_list' id=user.id%}">话题</a></li>
+                </ul>
+
+              <ul class="nav navbar-nav navbar-right" >
+
+                  <form class="navbar-form navbar-left" role="search">
+                      <div class="form-group input-group">
+                          <input type="text" class="form-control" placeholder="输入你感兴趣的内容" style="width: 300px;">
+
+                          <span class="input-group-btn" style="padding-top: 0;">
+                              <input class="btn" type="submit" value="提问">
+                          </span>
+
+                      </div>
+
+                  </form>
+
+                  <li class="dropdown" >   <!--style="right: 35%"-->
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="{% url 'mypage' id=user.id %}">我的主页</a></li>
+                          <li><a href="#">私信</a></li>
+                          <li><a href="{% url 'author_update' id=user.id %}">个人设置</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">退出</a></li>
+                      </ul>
+                  </li>
+
+
+              </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="content">
+    <div class="row">
+        <div class="col-md-8">
+          {% block content %}
+          {% endblock %}
+  </div>
+ </div>
+</div>
+
+
+
+    <div id="wrrap" style="width:auto;">               <!--长度-->
+
+    </div>
+
+
+<script type="text/javascript" language="JavaScript">
+/*      return top     */
+    $(function(){
+	var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\">" +
+                    "<div class=\"btn btn-wx\">" +
+                        "<img class=\"pic\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-phone\">" +
+                         "<img class=\"phone\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-top\"></div>" +
+                "</div>";
+
+	$("#top").html(tophtml);
+	$("#izl_rmenu").each(function(){
+		$(this).find(".btn-wx").mouseenter(function(){
+			$(this).find(".pic").fadeIn("slow");
+		});
+		$(this).find(".btn-wx").mouseleave(function(){
+			$(this).find(".pic").fadeOut("slow");
+		});
+		$(this).find(".btn-phone").mouseenter(function(){
+			$(this).find(".phone").fadeIn("slow");
+		});
+		$(this).find(".btn-phone").mouseleave(function(){
+			$(this).find(".phone").fadeOut("slow");
+		});
+		$(this).find(".btn-top").click(function(){
+			$("html, body").animate({
+				"scroll-top":0
+			},"fast");
+		});
+	});
+
+
+
+        $("#izl_rmenu .btn-wx").hide();                //add
+        $("#izl_rmenu .btn-phone").hide();         //add
+	var lastRmenuStatus=false;
+	$(window).scroll(function(){
+		var _top=$(window).scrollTop();
+		if(_top>200){
+			$("#izl_rmenu").data("expanded",true);
+            $("#izl_rmenu .btn-wx").fadeIn(1000);            //add
+            $("#izl_rmenu .btn-phone").fadeIn(1500);
+            $("#izl_rmenu .btn-top").fadeIn(2000);
+		}else{
+			$("#izl_rmenu").data("expanded",false);
+            $("#izl_rmenu .btn-wx").fadeOut(1000);              //add
+            $("#izl_rmenu .btn-phone").fadeOut(1500);
+            $("#izl_rmenu .btn-top").fadeOut(2000);
+		}
+		if($("#izl_rmenu").data("expanded")!=lastRmenuStatus){
+			lastRmenuStatus=$("#izl_rmenu").data("expanded");
+			if(lastRmenuStatus){
+				$("#izl_rmenu .btn-top").slideDown();
+
+			}else{
+				$("#izl_rmenu .btn-wx").slideUp();
+
+			}
+		}
+	});
+});
+
+/*      return top     */
+
+</script>
+
+</body>
+

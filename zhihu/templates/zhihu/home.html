@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.min.css" rel="stylesheet">
+    {% load staticfiles %}
+    <link href=" {% static 'css/homecss.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+
+<div id="top"></div>   <!--return top-->
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><strong>一起学吧</strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+            <li class=""><a href="{% url 'mypage' id=user.id %}">主页</a></li>
+            <li><a href="{% url 'article_list' id=user.id %}">广场</a></li>
+            <li><a href="#">话题</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="输入你感兴趣的内容" style="width: 300px;">
+            <input type="submit" class="btn btn-default btn-sm" value="提问" style="width: 60px;"/>
+        </div>
+
+      </form>
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="dropdown" >   <!--style="right: 35%"-->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'mypage' id=user.id %}">我的主页</a></li>
+            <li><a href="#">私信</a></li>
+            <li><a href="{% url 'author_update' id=user.id %}">个人设置</a></li>
+            <li class="divider"></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="wrrap" style="float:left;">
+    <div class="maincontent" style="padding-left: 20px;padding-top: 70px;">
+
+
+        <div class="panel panel-default " style="">
+            <div class="panel-heading ">
+
+
+                <a style="text-decoration: none;cursor: pointer" data-toggle="modal" data-target="#myModal"><i class="icon icon-question-sign">提问</i></a>
+
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" style="padding-top: 100px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">提问</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <input type="text" class="form-control" placeholder="写下你的问题" />
+                                    <p>问题说明（可选）</p>
+                                    <input type="text" class="form-control" placeholder="" style="" />
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="提交" />
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" />
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                <a style="padding-left: 100px;"></a>
+                <a style="text-decoration: none;cursor: pointer"><i class="icon-book" style="">回答</i></a>
+                <a style="padding-left: 100px;"></a>
+                <a style="text-decoration: none;cursor: pointer" target="_blank" href="{% url 'article_add' id=user.id %}"><i class="icon-pencil">写文章</i></a>
+            </div>
+        </div>
+
+        <p id="name">
+            <a class="icon-calendar" style="color: black; font-size: large;text-decoration: none;cursor: default;"> 最新动态</a>
+        </p>
+        <hr style="color:gray; "/>
+
+
+        <ul class="media-list">
+        <!--文章列表-->
+
+            {% for article in articles %}
+            <li class="media">
+                <a class="pull-left" href="#" >
+
+                    {% load static %}
+                    <img class="media-object" style="width:40px; height:40px" src="/static/picture/1.jpg" alt="My image"/>
+
+                    <!--<img class="media-object" src="picture/g.jpg" alt="..." style="width:40px; height:40px" >-->
+                </a>
+                <div class="media-body">
+                    <p class="media-heading" style="color: gray">来自...话题<a style="color: blue;padding-left: 10px;cursor: pointer;text-decoration: none;">关注话题</a></p>
+
+                    <h4>{{article.title}}</h4>
+
+                    <p><a style="text-decoration: none;cursor: pointer">题主， </a><i class="icon icon-tags"></i><a style="text-decoration: none;cursor: pointer">标签</a></p>
+
+                    <div style="float: left">
+                        <a class="pull-left" href="#" >
+
+                            {% load static %}
+                            <img class="media-object" alt="My image" style="width:200px;height:140px; display: block;" src="/static/picture/1.jpg">
+
+                            <!--<img src="picture/1.jpg" alt="..." style="width:200px ;height:140px; display: block;">-->
+                        </a>
+                    </div>
+
+                    <div id="content" style="width:450px; height:auto; float:left; display:inline;cursor: pointer;">
+
+                      {{article.context}}
+
+                    </div>
+
+
+                </div>
+
+
+                <div style="margin-top: 20px; padding-left: 50px;">
+
+                    <a class="feedbacktool" style="padding-left: 0;text-decoration: none;" onclick="fcs()"><span  class="icon-tags" style=""></span><span id="fs">关注问题</span><span id="cancelfs" style="display: none;">取消关注</span></a>
+                    <a style="padding-left: 10px;"></a>
+                    <a class="feedbacktool" style="text-decoration: none;" onclick="showcomment()"><span id="" class="icon-comment"></span>评论</a>
+                    <a style="padding-left: 10px;"></a>
+                    <a class="feedbacktool" style="text-decoration: none;" onclick="compliment()"><span  class="icon-thumbs-up"></span><span id="compliment">赞</span><span id="cancelcpt" style="display: none;">取消赞</span></a>
+                    <a style="padding-left: 10px;"></a>
+                    <a class="feedbacktool" style="text-decoration: none;" onclick="collection()"><span  class="icon-bookmark"></span><span id="clt">收藏</span><span id="cancelclt"  style="display: none;">取消收藏</span></a>
+                    <a style="padding-left: 10px;"></a>
+                    <a class="feedbacktool" style="text-decoration: none;"><span class="icon-share"></span><span>分享</span></a>
+
+                     <div class="panel panel-default" id="icomment" style="width:650px;display:none;">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="form-group " style="text-align: center">
+                                    <div class="col-xs-10"><input type="text" class="form-control"  placeholder="写下你的评论"/></div>
+                                    <div><input type="button" class="btn btn-warning btn-sm" value="评论" /></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel-body">
+                            <p style="color: grey;">精选答案</p>
+                            <p>answer1</p>
+
+
+                            <div><hr style="color:slategray; "/></div>
+                            <p>answer2</p>
+
+                        </div>
+                     </div>
+
+
+
+
+                </div>
+                <hr style="color:gray;"/>
+
+            </li>
+            {% endfor %}
+            <!--文章列表-->
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+<div style="float:right;padding-top:70px;margin-right:40px;height: 200px;width: 300px;right:5%">
+    <p>侧栏</p>
+</div>
+
+
+
+
+<script type="text/javascript" language="JavaScript">
+    function show(){
+        var box = document.getElementById("content");
+        var text = box.innerHTML;
+
+        var newBox = document.createElement("div");
+        var btn = document.createElement("a");
+        newBox.innerHTML = text.substring(0,200);
+        btn.innerHTML = text.length > 200 ? "显示全部" : "";
+        btn.href = "###";
+
+
+        btn.onclick = function(){
+            if (btn.innerHTML == "显示全部"){
+                btn.innerHTML = "收起";
+                newBox.innerHTML = text;
+            }else{
+                btn.innerHTML = "显示全部";
+                newBox.innerHTML = text.substring(0,200);
+            }
+        };
+
+
+        box.innerHTML = "";
+        box.appendChild(newBox);
+        box.appendChild(btn);
+    }
+    show();
+
+
+    function showcomment() {
+        var icmt = document.getElementById("icomment");
+        if(icmt.style.display == "none")
+        {
+            icmt.style.display = "block";
+        }
+        else if(icmt.style.display == "block")
+        {
+            icmt.style.display = "none";
+        }
+    }
+
+    //关注问题
+    function fcs() {
+        var fc = document.getElementById("cancelfs");
+        var ffc = document.getElementById("fs");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+    //赞
+    function compliment() {
+        var fc = document.getElementById("cancelcpt");
+        var ffc = document.getElementById("compliment");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+ //收藏
+    function collection() {
+        var fc = document.getElementById("cancelclt");
+        var ffc = document.getElementById("clt");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+
+
+
+
+
+/*      return top     */
+    $(function(){
+	var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\">" +
+                    "<div class=\"btn btn-wx\">" +
+                        "<img class=\"pic\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-phone\">" +
+                         "<img class=\"phone\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-top\"></div>" +
+                "</div>";
+
+	$("#top").html(tophtml);
+	$("#izl_rmenu").each(function(){
+		$(this).find(".btn-wx").mouseenter(function(){
+			$(this).find(".pic").fadeIn("fast");
+		});
+		$(this).find(".btn-wx").mouseleave(function(){
+			$(this).find(".pic").fadeOut("fast");
+		});
+		$(this).find(".btn-phone").mouseenter(function(){
+			$(this).find(".phone").fadeIn("fast");
+		});
+		$(this).find(".btn-phone").mouseleave(function(){
+			$(this).find(".phone").fadeOut("fast");
+		});
+		$(this).find(".btn-top").click(function(){
+			$("html, body").animate({
+				"scroll-top":0
+			},"fast");
+		});
+	});
+
+	var lastRmenuStatus=false;
+	$(window).scroll(function(){//bug
+		var _top=$(window).scrollTop();
+		if(_top>200){
+			$("#izl_rmenu").data("expanded",true);
+		}else{
+			$("#izl_rmenu").data("expanded",false);
+		}
+		if($("#izl_rmenu").data("expanded")!=lastRmenuStatus){
+			lastRmenuStatus=$("#izl_rmenu").data("expanded");
+			if(lastRmenuStatus){
+				$("#izl_rmenu .btn-top").slideDown();
+			}else{
+				$("#izl_rmenu .btn-top").slideUp();
+			}
+		}
+	});
+});
+
+/*      return top     */
+
+</script>
+
+
+</body>

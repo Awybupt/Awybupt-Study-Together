@@ -1,0 +1,569 @@
+<!-- date: 2016.11.24-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>一起学吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+
+    <link href="css/homecss.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="css/animate.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
+
+
+    {% load static %}
+    <link href=" {% static 'css/homecss.css' %}" rel="stylesheet" type="text/css">
+
+
+
+    <script language="javascript">
+        function locking(){
+         document.all.zzjs_net.style.display="block";
+         document.all.zzjs_net.style.width=document.body.clientWidth;
+         document.all.zzjs_net.style.height=document.body.clientHeight;
+         document.all.www_zzjs_net.style.display='block';
+        }
+        function Lock_CheckForm(theForm){
+         document.all.zzjs_net.style.display='none';document.all.www_zzjs_net.style.display='none';
+         return false;
+        }
+    </script>
+
+
+    <style>
+        .jumbotron{ background:url(/static/picture/1.jpg); }
+        * {margin: 0; padding: 0;}
+        #d1 {width:30%;height:auto;float:left;background-color:white;}
+        #d2 {width:30%;height:auto;float:left;background-color:white;}
+        #d3 {width:30%;height:auto;float:left;background-color:white;}
+
+
+
+    /*roll pic*/
+
+    body {
+
+    }
+
+    #container{
+        width:90%;
+        overflow: hidden;
+        margin: 50px auto;
+        background: white;
+    }
+
+
+
+    .photobanner {           /*photobanner*/
+        height: 233px;
+        width: 3600px;
+        margin-bottom: 80px;
+    }
+
+
+        /*keyframe animations*/
+    .first {
+        -webkit-animation: bannermove 30s linear infinite;
+           -moz-animation: bannermove 30s linear infinite;
+            -ms-animation: bannermove 30s linear infinite;
+             -o-animation: bannermove 30s linear infinite;
+                animation: bannermove 30s linear infinite;
+    }
+
+    @keyframes "bannermove" {
+     0% {
+        margin-left: 0px;
+     }
+     100% {
+        margin-left: -2125px;
+     }
+    }
+
+    @-moz-keyframes bannermove {
+     0% {
+       margin-left: 0px;
+     }
+     100% {
+       margin-left: -2125px;
+     }
+    }
+
+    @-webkit-keyframes "bannermove" {
+     0% {
+       margin-left: 0px;
+     }
+     100% {
+       margin-left: -2125px;
+     }
+    }
+
+    @-ms-keyframes "bannermove" {
+     0% {
+       margin-left: 0px;
+     }
+     100% {
+       margin-left: -2125px;
+     }
+    }
+
+    @-o-keyframes "bannermove" {
+     0% { margin-left: 0px;}
+     100% { margin-left: -2125px; }
+    }
+
+    .photobanner {
+     height: 233px;
+     width: 3550px;
+     margin-bottom: 80px;
+    }
+
+    .photobanner img {
+     -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+     -o-transition: all 0.5s ease;
+     -ms-transition: all 0.5s ease;
+     transition: all 0.5s ease;
+    }
+
+    .photobanner img:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+     -ms-transform: scale(1.1);
+     transform: scale(1.1);
+     cursor: pointer;
+
+     -webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+     -moz-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+     box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+    }
+
+
+    /*roll pic*/
+
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="top"></div>   <!--return top-->
+
+
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" style="opacity:0.9">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><strong>一起学吧</strong></a>
+            </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                <ul class="nav navbar-nav navbar" >
+                    <li ><a href="{% url 'login'%}">主页</a></li>
+                    <li><a href="{% url 'login' %}">广场</a></li>
+                    <li><a href="{% url 'login' %}">话题</a></li>
+                </ul>
+
+              <ul class="nav navbar-nav navbar-right" >
+
+
+                  <form class="navbar-form navbar-left" role="search">
+                      <div class="form-group input-group">
+                          <input type="text" class="form-control" placeholder="输入你感兴趣的内容" style="width: 300px;">
+
+                          <span class="input-group-btn" style="padding-top: 0px;">
+                              <input class="btn" type="submit" value="提问">
+                          </span>
+
+                      </div>
+                        <a href="{% url 'login'%}"><input type="button"  class="btn btn-success"  value="登录"></a>
+                        <a href="{% url 'register'%}"><input type="button"  class="btn btn-primary"  value="注册"></a>
+
+                  </form>
+              </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="jumbotron" id="broad" style="height: 100%">                              <!--巨幕-->
+            <div id="jumontop" class="container" style="display: none">
+                <div style="padding-top: 150px;"></div>
+
+
+
+            </div>
+    </div>
+
+
+    <div id="wrrap" style="width:auto">               <!--float:left-->
+        <div class="maincontent" style="padding-top: 10px;"> <!--padding-left: 20px-->
+
+        <div id="d1" style="text-decoration: none;cursor: pointer" data-toggle="modal" data-target="#myModal">
+            <div id="d11" style="display: none">
+                <p style="text-align: center" ><span class="icon icon-question-sign icon-4x"></span></p>
+                <p style="text-align: center">提问</p>
+                <p>...</p>
+                <p>...</p>
+            </div>
+        </div>
+
+
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" style="padding-top: 100px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">提问</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <input type="text" class="form-control" placeholder="写下你的问题" />
+                                    <p>问题说明（可选）</p>
+                                    <input type="text" class="form-control" placeholder="" style="" />
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="提交" />
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" />
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+
+
+
+        <div id="d2">
+            <div id="d22" style="display: none">
+                <p style="text-align: center"><span class="icon icon-comment icon-4x"></span></p>
+                <p style="text-align: center">上传文件</p>
+                <p>...</p>
+                <p>...</p>
+
+            </div>
+        </div>
+
+
+        <div id="d3">
+            <div id="d33" style="display: none">
+                <p style="text-align: center"><span class="icon icon-pencil icon-4x"></span></p>
+
+                <p style="text-align: center">写文章</p>
+                <p>...</p>
+                <p>...</p>
+            </div>
+        </div>
+
+
+        <div id="container">
+
+            <!--put some subject-->
+            <h2 style="">相关话题</h2>
+            <div class="photobanner" style="margin-top: 30px;">
+
+                <img class="first" src="/static/picture/1.jpg" alt="" style="width:350px;height:233px;"/>
+                <img src="/static/picture/1.jpg"   alt="" style="width: 350px;height:233px;"/>
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+                <img src="/static/picture/1.jpg" alt="" style="width: 350px;height:233px;"/>
+
+            </div>
+            <p style="text-align: center; font-size: large; cursor: pointer">显示所有学科<span class=" icon-double-angle-right"></span></p>
+
+
+        </div>
+
+
+
+        <div  style="padding-left: 5%">
+            <div id="content" style="width:450px; height:auto; float:left; display:inline;cursor: pointer;">
+            </div>
+        </div>
+
+
+        <div>
+            <p style="text-align: center">somewords....</p>
+
+            <div style="width:33%;height:auto;float:left;" >
+                <h2 style="text-align: center">{{ user_count }}</h2>
+                <p style="text-align: center">注册用户</p>
+            </div>
+
+             <div style="width:33%;height:auto;float:left;" >
+                <h2 style="text-align: center">{{ qus_count }}</h2>
+                <p style="text-align: center">提问数</p>
+            </div>
+
+            <div style="width:33%;height:auto;float:left;" >
+                <h2 style="text-align: center">{{ ans_count }}</h2>
+                <p style="text-align: center">回答数</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 150px;" >
+                <input type="button"  value="现在就加入" class="btn btn-warning">
+             </div>
+        </div>
+
+
+    </div>
+
+
+       <footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<p>Copyright 2016 <a href="#">xxxx</a>. All Rights Reserved. <br>Made with <i class="icon-heart3 love"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+</div>
+
+
+<!--<div style="float:right;padding-top:70px;margin-right:40px;height: 200px;width: 300px;right:5%">
+    <p>侧栏</p>
+</div>-->
+
+
+
+
+<script type="text/javascript" language="JavaScript">
+
+    $(document).ready(function(){
+        $("#broad").css("height", $(window).height());
+
+        $("#jumontop").fadeIn(4000);
+        $("#d11").fadeIn(1000);
+        $("#d22").fadeIn(2000);
+        $("#d33").fadeIn(3000);
+
+        $("#showcomt").click(function(){            //显示评论//
+
+            $("#icomment").slideToggle(1500);
+        });
+
+
+    });
+
+    function show(){
+        var box = document.getElementById("content");
+        var text = box.innerHTML;
+
+        var newBox = document.createElement("div");
+        var btn = document.createElement("a");
+        newBox.innerHTML = text.substring(0,200);
+        btn.innerHTML = text.length > 200 ? "显示全部" : "";
+        btn.href = "###";
+
+
+        btn.onclick = function(){
+            if (btn.innerHTML == "显示全部"){
+                btn.innerHTML = "收起";
+                newBox.innerHTML = text;
+            }else{
+                btn.innerHTML = "显示全部";
+                newBox.innerHTML = text.substring(0,200);
+            }
+        };
+
+
+        box.innerHTML = "";
+        box.appendChild(newBox);
+        box.appendChild(btn);
+    }
+    show();
+
+/*
+    function showcomment() {
+        var icmt = document.getElementById("icomment");
+        if(icmt.style.display == "none")
+        {
+            icmt.style.display = "block";
+        }
+        else if(icmt.style.display == "block")
+        {
+            icmt.style.display = "none";
+        }
+    }
+*/
+    //关注问题
+    function fcs() {
+        var fc = document.getElementById("cancelfs");
+        var ffc = document.getElementById("fs");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+    //赞
+    function compliment() {
+        var fc = document.getElementById("cancelcpt");
+        var ffc = document.getElementById("compliment");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+ //收藏
+    function collection() {
+        var fc = document.getElementById("cancelclt");
+        var ffc = document.getElementById("clt");
+        if(fc.style.display == "none")
+        {
+            fc.style.display = "inline";
+            ffc.style.display = "none";
+        }
+
+        else if(fc.style.display == "inline")
+        {
+            fc.style.display = "none";
+            ffc.style.display = "inline";
+        }
+
+    }
+
+
+
+
+
+
+
+/*      return top     */
+    $(function(){
+	var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\">" +
+                    "<div class=\"btn btn-wx\">" +
+                        "<img class=\"pic\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-phone\">" +
+                         "<img class=\"phone\" src=\"/static/picture/weixin.jpg\" /></div>" +
+                    "<div class=\"btn btn-top\"></div>" +
+                "</div>";
+
+	$("#top").html(tophtml);
+	$("#izl_rmenu").each(function(){
+		$(this).find(".btn-wx").mouseenter(function(){
+			$(this).find(".pic").fadeIn("slow");
+		});
+		$(this).find(".btn-wx").mouseleave(function(){
+			$(this).find(".pic").fadeOut("slow");
+		});
+		$(this).find(".btn-phone").mouseenter(function(){
+			$(this).find(".phone").fadeIn("slow");
+		});
+		$(this).find(".btn-phone").mouseleave(function(){
+			$(this).find(".phone").fadeOut("slow");
+		});
+		$(this).find(".btn-top").click(function(){
+			$("html, body").animate({
+				"scroll-top":0
+			},"fast");
+		});
+	});
+
+
+
+        $("#izl_rmenu .btn-wx").hide();                //add
+        $("#izl_rmenu .btn-phone").hide();         //add
+	var lastRmenuStatus=false;
+	$(window).scroll(function(){
+		var _top=$(window).scrollTop();
+		if(_top>200){
+			$("#izl_rmenu").data("expanded",true);
+            $("#izl_rmenu .btn-wx").fadeIn(1000);            //add
+            $("#izl_rmenu .btn-phone").fadeIn(1500);
+            $("#izl_rmenu .btn-top").fadeIn(2000);
+		}else{
+			$("#izl_rmenu").data("expanded",false);
+            $("#izl_rmenu .btn-wx").fadeOut(1000);              //add
+            $("#izl_rmenu .btn-phone").fadeOut(1500);
+            $("#izl_rmenu .btn-top").fadeOut(2000);
+		}
+		if($("#izl_rmenu").data("expanded")!=lastRmenuStatus){
+			lastRmenuStatus=$("#izl_rmenu").data("expanded");
+			if(lastRmenuStatus){
+				$("#izl_rmenu .btn-top").slideDown();
+
+			}else{
+				$("#izl_rmenu .btn-wx").slideUp();
+
+			}
+		}
+	});
+});
+
+/*      return top     */
+
+</script>
+
+<script src="js/jquery.min.js"></script>
+<!-- Owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/main.js"></script>
+
+
+</body>
+</html>

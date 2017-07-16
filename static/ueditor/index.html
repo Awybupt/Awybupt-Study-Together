@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+</head>
+
+<body>
+    <form role="form" action="#" method="post">
+        <!-- 加载编辑器的容器 -->
+
+        <p>{{form.title}}</p>
+        <script id="container" name="content" type="text/plain">
+            {{form.context}}
+        </script>
+
+
+        <div style="display: block;">
+
+            <div style=" font-size: small;color:grey;">添加恰当的标签，能让更多擅长此类问题的大咖来回答。每个问题最多可添加5个标签。</div>
+
+            <div style="float: right ;padding-right: 90px">
+                <input type="submit" class="" id="" value="发布文章"  href="##" target="_blank" />
+            </div>
+        </div>
+
+    </form>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var editor = UE.getEditor('container');
+    </script>
+</body>
+
+</html>
