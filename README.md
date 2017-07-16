@@ -6,4 +6,5 @@ The project is based on the Dejango framework, which aims to build a learning an
     习氛围
 ### The innovation point
     本项目的创新点就在与限定用户人群，对优质资源进行汇总，避免资料的分散化，将线下的学习资源整合在线上，以网站为依托，提高了多平台适用性
+![demo](https://github.com/Awybupt/Study-Together/blob/master/image/2.png)
     
